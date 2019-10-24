@@ -1,12 +1,22 @@
 import React from 'react';
-import './App.css';
+import './scss/App.scss';
+import Logo from './img/logo192.png';
 
-function App() {
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    console.log(Logo);
+    
+  }
+  render(){
   return (
     <div className="App">
+      <header>
+        <img src={Logo} alt="Logo"/>
+      </header>
       <div className="contenedor">
         <ul className="actions">
-          <li className="actions-action"><a href="#">Descargar</a></li>
+          <li className="actions-action"><a href="/">Descargars</a></li>
           <li className="actions-action"></li>
           <li className="actions-action"></li>
         </ul>
@@ -23,9 +33,9 @@ function App() {
           </div>
         </div>
       </div>
-
     </div>
   );
+}
 }
 
 export default App;
