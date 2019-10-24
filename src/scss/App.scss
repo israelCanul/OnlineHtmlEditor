@@ -1,23 +1,89 @@
-  .App {
-    text-align: center;
+  .noLink{
+    text-decoration: none;
   }
-  
-  .App-logo {
-    height: 40vmin;
+  .noList{
+    list-style: none;
   }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+  .btn{
+    background: rgba(50,50,50,0.5);
     color: white;
   }
-  
-  .App-link {
-    color: #09d3ac;
+  .contenedor{
+    width: 100%;
+    position: relative;   
+    padding: 2px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex: 1;
   }
-  
+  #editorJS{
+    width: 50%;
+    height: 300px;
+    background: rgb(random(255),random(255),random(255));
+  }
+  #editorCSS{
+    width: 50%;
+    height: 300px;
+    background: rgb(random(255),random(255),random(255));
+  }
+  .result{
+    flex-direction: row;
+    #editorHTML{
+      width: 50%;
+      height: 300px;
+      background: rgb(random(255),random(255),random(255));
+      &.active{
+        width: 100%;
+      }
+    }
+    .result__wrapper{
+      width: 50%;
+      height: 300px;
+      background: rgb(random(100),random(100),random(100));
+    }
+  }
+  .tabs{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    // background: rgb(random(255),random(255),random(255));
+    display: flex;
+    flex-direction: row;
+    padding: 5px 5px;
+    &__tab{
+      width: 100%;
+      max-width: 200px;
+      padding:0px 5px;
+      display: flex;
+      .tab{
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        border-radius: 3px;
+        // background: rgb(random(255),random(255),random(255));
+      }
+    }
+  }
+  .actions{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    padding: 15px 5px;
+    justify-content: flex-start;
+    &__action{
+      width: 100%;
+      max-width: 100px;
+      padding:0px 5px;
+      display: flex;
+      a{
+        line-height: 30px;
+        width: 100px;
+        text-align: center;
+        border-radius: 3px;
+        // background: rgb(random(255),random(255),random(255));
+      }
+    }
+  }
