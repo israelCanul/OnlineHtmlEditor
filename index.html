@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://pagecdn.io/lib/ace/1.4.6/ace.js"></script>
+    <script src="https://pagecdn.io/lib/ace/1.4.6/mode-php.js"></script>
+</head>
+<body>
+        <style type="text/css" media="screen">
+            #editor { 
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            #noeditor{
+                position: absolute;
+                right: 0px;
+                z-index: 1222;
+            }
+        </style>
+        <div id="editorJS">
+
+        </div>
+        <div id="editor1">
+                
+        </div>
+        <div id="editor2">
+                
+        </div>
+        <div id="resultado">
+
+        </div>
+
+        <div id="actions">
+            <button onclick="save()">Download</button>
+        </div>
+
+
+<script>
+        var htmlViewer = document.getElementById('resultado');
+        // let r = Math.random().toString(36).replace(/[0-9]+/g, 'g').substr(0, 5);
+        var r = Math.random().toString(36).substring(6).replace(/[0-9]+/g, 'g');
+
+        
+
+        var editor2 = ace.edit("editorJS");
+        editor2.setTheme("ace/theme/tomorrow_night_bright");
+        editor2.session.setMode('ace/mode/javascript');
+        
+        var editor = ace.edit("editor1");
+        editor.setTheme("ace/theme/tomorrow_night_bright");
+        editor.session.setMode('ace/mode/css');
+
+        var editor1 = ace.edit("editor2");
+        editor1.setTheme("ace/theme/monokai");
+        editor1.session.setMode('ace/mode/html');
+
+       
+        editor2.on('change',function(e){
+            createResult();
+        });
+
+        editor.on('change',function(e){
+            createResult();
+        });      
+        
+        //Editor HTML   
+        var valueHTML = ''; 
+        editor1.on('change',function(e){
+            createResult();
+        });
+
+
+        function createResult(){
+            var str = editor.session.getValue();
+            var styles = str.trim();
+            var newStyle = str.replace(/(([\.]|[#]|)[\:\-\.a-z\w ]*)[{|\,]/g, function(x){
+                return "#"+r.toString() + " " + x;
+            });
+            htmlViewer.innerHTML = '<style type="text/css" media="screen">' + newStyle + '</style><div id="'+r+'">'+ editor1.session.getValue() +  '</div><script >' +  editor2.session.getValue() + '<\/script>' ;
+        }
+        function save(e) {
+            var htmlContent = [htmlViewer.innerHTML];
+            var bl = new Blob(htmlContent, {type: "text/html"});
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(bl);
+            a.download = "your-download-name-here.html";
+            a.hidden = true;
+            document.body.appendChild(a);
+            a.innerHTML = "something random - nobody will see this, it doesn't matter what you put here";
+            a.click();
+        }
+</script>
+
+
+
+<style>
+
+    #editor1{
+        position: relative;
+        height: 500px;
+        width: 50%;
+        float: left;
+    }
+    #editor2{
+        position: relative;
+        height: 500px;
+        width: 50%;
+        float: left;
+    }
+    #editorJS,
+    #resultado{
+        position: relative;
+        height: 200px;
+        width: 100%;
+        float: left; 
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    #actions{
+        position: relative;
+        height: 200px;
+        width: 100%;
+        float: left; 
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+
+</style>
+</body>
+</html>
